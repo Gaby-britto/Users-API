@@ -1,16 +1,13 @@
 const express = require('express');
-const port = 3002;
+const bodyParser = require('body-parser');
+const cors = require('cors'); // Importa o módulo cors
+
 const app = express();
-const router = require("./src/routes/router");
-const cors = require('cors');
-app.use(cors({
-    methods: ['GET' , 'POST']
-  }));
+const port = 3001;
 
-app.use(express.json());
-app.use(express.static("public"));
-app.use("/", router);
+app.use(bodyParser.json());
+app.use(cors()); // Habilita CORS para todas as rotas
 
-app.listen(port, () =>{
-    console.log(`funcionandoo! http://localhost:${port}`);
-})
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
+});
